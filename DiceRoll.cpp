@@ -35,12 +35,19 @@ std::ostream& operator<<(std::ostream& out, const RollResultProxy& roll) {
 }
 
 int main() {
-  for (int i = 4; i <= 12; i += 2) {
+  const int smallerDiceSideLowerBound = 4;
+  const int smallerDiceSideUpperBound = 12;
+  const int largerDiceSideLowerBound = 20;
+  const int largerDiceSideUpperBound = 100;
+  const int smallerDiceOffset = 2;
+  const int largerDiceOffset = 80;
+
+  for (int i = smallerDiceSideLowerBound; i <= smallerDiceSideUpperBound; i += smallerDiceOffset) {
     for (int j = 1; j <= 4; ++j) {
       std::cout << "Rolling " << j << "d" << i << ": " << roll(DiceQty(j), DiceSides(i)) << "\n";
     }
   }
-  for (int i = 20; i <= 100; i += 80) {
+  for (int i = largerDiceSideLowerBound; i <= largerDiceSideUpperBound; i += largerDiceOffset) {
     for (int j = 1; j <= 4; ++j) {
       std::cout << "Rolling " << j << "d" << i << ": " << roll(DiceQty(j), DiceSides(i)) << "\n";
     }

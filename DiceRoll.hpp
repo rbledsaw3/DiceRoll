@@ -22,14 +22,12 @@ struct RollResultProxy {
     DiceSides diceSides;
     int result;
 
-    // Constructor
     RollResultProxy(DiceQty diceQty, DiceSides diceSides, int result)
       : diceQty(diceQty),
         diceSides(diceSides),
         result(result) {}
 
-    // Implicit conversion to int when not used in ostream
-    operator int() const {
+    explicit operator int() const {
       return result;
     }
 };
@@ -49,7 +47,7 @@ template<int diceQty, int diceSides> RollResultProxy roll() {
     results += dist(rDev);
   }
 
-  return RollResultProxy(DiceQty(diceQty), DiceSides(diceSides), results);
+  return { DiceQty(diceQty), DiceSides(diceSides), results };
 }
 
 int roll(DiceQty diceQty, DiceSides diceSides);
